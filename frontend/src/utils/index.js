@@ -1,18 +1,14 @@
-import uz from '../lang/uz';
-import ru from '../lang/ru';
-import en from '../lang/en';
-import store from '../redux';
-import { STYLING_CONFIGS } from '../constants';
-import { message } from 'antd';
-import axios from './axios';
+import en from "../lang/en";
+import store from "../redux";
+import { STYLING_CONFIGS } from "../constants";
+import { message } from "antd";
+import axios from "./axios";
 const dictionary = {
-  ru,
-  uz,
-  en
-}; 
+  en,
+};
 
 export function t(str) {
-  const lang = store.getState().account?.lang || 'uz';
+  const lang = "en";
   if (dictionary[lang][str]) {
     return dictionary[lang][str];
   }
@@ -21,22 +17,22 @@ export function t(str) {
 }
 
 export function pxToRem(size) {
-  if (typeof size === 'number') {
+  if (typeof size === "number") {
     return `${Number(size / STYLING_CONFIGS.ROOT_SIZE)}rem`;
   }
-  throw new Error('size is not a number. Type numbers only');
+  throw new Error("size is not a number. Type numbers only");
 }
 
 export const getErrorMessage = (error) => {
   if (error.response) {
     if (error.response.status === 401) {
-      return t('You are not authorized');
+      return t("You are not authorized");
     }
     if (error.response.status === 404) {
-      return t('Resource not found');
+      return t("Resource not found");
     }
     if (error.response.status === 403) {
-      return t('You are not authorized');
+      return t("You are not authorized");
     }
     if (error.response.data) {
       return error.response.data.message;
@@ -46,7 +42,7 @@ export const getErrorMessage = (error) => {
   return error.message;
 };
 
-export const imgUploader = async(files) => {
+export const imgUploader = async (files) => {
   try {
     const formData = new FormData();
     formData.append("files", files);
@@ -55,16 +51,26 @@ export const imgUploader = async(files) => {
   } catch (err) {
     message.error(t("Something wrong. Try again."));
   }
-}
-
+};
 
 export const omitUpdateProps = (data) => {
-  const {__v, _id, status, createdAt, updatedAt, isDeleted, deletedAt, ...omitedData} = data;
+  const {
+    __v,
+    _id,
+    status,
+    createdAt,
+    updatedAt,
+    isDeleted,
+    deletedAt,
+    ...omitedData
+  } = data;
   return omitedData;
-}
+};
 
 export const createTablePagination = (total, pageSize) => {
-  const options = ['10', '20', '30', '40', '50', '100' ].filter(item => item < pageSize);
+  const options = ["10", "20", "30", "40", "50", "100"].filter(
+    (item) => item < pageSize
+  );
   return {
     total,
     hideOnSinglePage: true,
@@ -72,5 +78,5 @@ export const createTablePagination = (total, pageSize) => {
     showSizeChanger: total > STYLING_CONFIGS.TABLE_PAGE_SIZE,
     pageSizeOptions: options.concat(total),
     showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
-  }
-}
+  };
+};

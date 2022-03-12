@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Manrope', sans-serif !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-right: 1px solid #80808033;
+}
+
+.ant-table.ant-table-small .ant-table-title, .ant-table.ant-table-small .ant-table-footer, .ant-table.ant-table-small .ant-table-thead > tr > th, .ant-table.ant-table-small .ant-table-tbody > tr > td, .ant-table.ant-table-small tfoot > tr > th, .ant-table.ant-table-small tfoot > tr > td {
+  padding: 3px;
+  padding-left: 8px;
+}

@@ -4,17 +4,7 @@ import { getErrorMessage } from '../utils';
 
 export const CREATE_ATTANDANCE = async (attendance) => {
   try {
-    const { data } = await axios.post('/attendances', attendance);
-    return data;
-  } catch (error) {
-    console.log(error);
-    message.error(getErrorMessage(error));
-  }
-};
-
-export const CREATE_EQUIPMENT_ATTANDANCE = async (attendance) => {
-  try {
-    const { data } = await axios.post('/inventory-attendance', attendance);
+    const { data } = await axios.post('/attendance/add-attendance', attendance);
     return data;
   } catch (error) {
     console.log(error);
@@ -24,7 +14,7 @@ export const CREATE_EQUIPMENT_ATTANDANCE = async (attendance) => {
 
 export const CREATE_ATTANDANCE_WITH_QRCODE = async (userId) => {
   try {
-    const { data } = await axios.post('/attendances/qrcode-scanner', {userId});
+    const { data } = await axios.post('/attendance/add-attendance', {userId});
     return data;
   } catch (error) {
     console.log(error);
@@ -34,7 +24,7 @@ export const CREATE_ATTANDANCE_WITH_QRCODE = async (userId) => {
 
 export const FETCH_ATTANDANCE = async () => {
   try {
-    const { data } = await axios.get('/attendances');
+    const { data } = await axios.get('/attendance/');
     return data;
   } catch (error) {
     console.log(error);
@@ -42,28 +32,9 @@ export const FETCH_ATTANDANCE = async () => {
   }
 };
 
-export const FETCH_EQUIPMENT_ATTANDANCE_BY_ID = async (id) => {
-  try {
-    const { data } = await axios.get('/inventory-attendance/'+id);
-    return data;
-  } catch (error) {
-    console.log(error);
-    message.error(getErrorMessage(error));
-  }
-};
 export const DELETE_ATTANDANCE = async (id) => {
   try {
-    const { data } = await axios.delete(`/attendances/${id}`);
-    return data;
-  } catch (error) {
-    console.log(error);
-    message.error(getErrorMessage(error));
-  }
-};
-
-export const DELETE_EQUIPMENT_ATTANDANCE = async (id) => {
-  try {
-    const { data } = await axios.delete(`/inventory-attendance/${id}`);
+    const { data } = await axios.post(`/attendance/${id}/delete`);
     return data;
   } catch (error) {
     console.log(error);
@@ -73,7 +44,7 @@ export const DELETE_EQUIPMENT_ATTANDANCE = async (id) => {
 
 export const UPDATE_ATTANDANCE = async (id, userData) => {
   try {
-    const { data } = await axios.put(`/attendances/${id}`, userData);
+    const { data } = await axios.post(`/attendance/${id}/edit`, userData);
     return data;
   } catch (error) {
     console.log(error);

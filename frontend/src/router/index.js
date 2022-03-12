@@ -1,8 +1,9 @@
 import { lazy } from 'react';
-import { BiBookAlt, BiGroup, BiDumbbell, BiCreditCardAlt, BiCreditCard, BiCog, BiHourglass, BiScan, BiDesktop} from 'react-icons/bi';
+import { BiBookOpen, BiGroup, BiDumbbell, BiCreditCardAlt, BiCreditCard, BiCog, BiHourglass, BiScan, BiDesktop} from 'react-icons/bi';
 
 const Attendances = lazy(() => import('../views/Attendances'));
-const Members = lazy(() => import('../views/Members'));
+const Course = lazy(() => import('../views/Course'));
+const Students = lazy(() => import('../views/Students'));
 const Payments = lazy(() => import('../views/Payments'));
 const SignUp = lazy(() => import('../views/Auth/SignUp'));
 const SignIn = lazy(() => import('../views/Auth/SignIn'));
@@ -14,11 +15,19 @@ const QRCode = lazy(() => import('../views/QRCode'));
 export const MAIN_ROUTES = [
   {
     allowedRoles: ['admin', 'reception'],
-    path: '/members',
-    element: Members,
+    path: '/students',
+    element: Students,
     icon: <BiGroup size={24} />,
-    title: 'Talabalar',
+    title: 'Students',
     hidden: false
+  },
+  {
+    allowedRoles: ['admin', 'reception'],
+    path: '/course',
+    element: Course,
+    icon: <BiBookOpen size={24} />,
+    title: 'Courses',
+    hidden: true
   },
   {
     allowedRoles: ['admin', 'reception'],

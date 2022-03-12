@@ -92,7 +92,7 @@ export default function PaymentsEdit({ isVisible, hideModal, fetchData, data }) 
         autoComplete="on"
         layout="vertical"
       >
-        <Form.Item label={t('Member')}>
+        <Form.Item label={t('Course')}>
           <Select
             value={member}
             name="member"

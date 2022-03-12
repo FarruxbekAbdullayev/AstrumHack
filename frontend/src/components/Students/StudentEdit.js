@@ -73,7 +73,7 @@ export default function MemberEdit({
     });
 
     if (data) {
-      message.success(t("Member updated successfully"));
+      message.success(t("Student updated successfully"));
       fetchData();
       hideModal();
     }
@@ -86,13 +86,9 @@ export default function MemberEdit({
   const {
     address,
     membership,
-    firstName,
+    name,
     phone,
-    lang,
-    status,
     lastName,
-    membershipEnd,
-    membershipStart,
   } = { ...inputValues };
 
   const selectedMembership = useMemo(
@@ -102,10 +98,10 @@ export default function MemberEdit({
 
   return (
     <Modal
-      title={t("Update Member")}
+      title={t("Update Student")}
       style={{ top: 20 }}
       visible={isVisible}
-      okText={t("Update Member")}
+      okText={t("Update Student")}
       cancelText={t("Cancel")}
       onOk={handleSubmit}
       centered
@@ -125,30 +121,10 @@ export default function MemberEdit({
         autoComplete="on"
         layout="vertical"
       >
-        <Form.Item label={t("Image")}>
-          <UploadComponent
-            onChange={handleFileChange}
-            fileList={inputValues?.image || null}
-            edit={true}
-          />
-        </Form.Item>
-        <Form.Item label={t("Membership")} required>
-          <Select
-            value={membership}
-            style={{ width: "100%" }}
-            onChange={handleMembership}
-          >
-            {memberships.map(({ _id, title }) => (
-              <Option key={_id} value={_id}>
-                {title}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
         <Form.Item label={t("First Name")}>
           <Input
-            name="firstName"
-            value={firstName}
+            name="name"
+            value={name}
             onChange={handleInputChange}
           />
         </Form.Item>
@@ -165,31 +141,7 @@ export default function MemberEdit({
         <Form.Item label={t("Address")}>
           <Input name="address" value={address} onChange={handleInputChange} />
         </Form.Item>
-        {selectedMembership?.duration && (
-          <>
-            <Form.Item label={t("Membership Start")}>
-              <DatePicker
-                name="membershipStart"
-                value={membershipStart ? moment(membershipStart) : null}
-                onChange={(e) => handleDateChange(e, "membershipStart")}
-                style={{ width: "100%" }}
-                showToday
-                allowClear={false}
-              />
-            </Form.Item>
-            <Form.Item label={t("Membership End")}>
-              <DatePicker
-                name="membershipEnd"
-                value={membershipEnd ? moment(membershipEnd) : null}
-                onChange={(e) => handleDateChange(e, "membershipEnd")}
-                style={{ width: "100%" }}
-                showToday
-                allowClear={false}
-              />
-            </Form.Item>
-          </>
-        )}
-        <Form.Item label={t("Trainer")}>
+        <Form.Item label={t("Course")}>
           <Select
             name="status"
             style={{ width: "100%" }}
@@ -205,30 +157,20 @@ export default function MemberEdit({
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label={t("Status")}>
+        <Form.Item label={t("Group")}>
           <Select
-            value={status}
             name="status"
             style={{ width: "100%" }}
-            onChange={handleStatusChange}
+            allowClear
+            defaultValue={inputValues?.trainer || null}
+            onChange={(e) => setInputValues({ ...inputValues, trainer: e })}
           >
-            <Option value="active">{t("Active")}</Option>
-            <Option value="inactive">{t("In Active")}</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label={t("Language")}>
-          <Select
-            value={lang}
-            style={{ width: "100%" }}
-            onChange={handleLangChange}
-          >
-            {Object.values(LANGUAGES).map((item) => {
-              return (
-                <Option key={item.value} value={item.value}>
-                  {t(item.label)}
-                </Option>
-              );
-            })}
+            <Option value={null}>{t("Coach is not needed")}</Option>
+            {trainersData?.map((item) => (
+              <Option value={item?._id}>
+                {item.firstName} {item.lastName}
+              </Option>
+            ))}
           </Select>
         </Form.Item>
       </Form>

@@ -16,17 +16,10 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
   const [inputValues, setInputValues] = useState({
     phone: null,
     password: '',
-    firstName: '',
+    name: '',
     lastName: '',
     address: '',
-    status: 'active',
-    lang: 'uz',
-    role: 'member',
-    membership: null,
-    image: null,
-    trainer: null,
-    membershipStart: null,
-    membershipEnd: null,
+    email: '',
   });
 
   const fetchMemberships = async () => {
@@ -78,7 +71,7 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
     if (data) {
       hideModal();
       fetchData();
-      message.success(t('User created successfully'));
+      message.success(t('Student created successfully'));
     }
   };
 
@@ -89,10 +82,10 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
 
   return (
     <Modal
-      title={t('Add Member')}
+      title={t('Add Student')}
       style={{ top: 20 }}
       visible={isVisible}
-      okText={t('Create Member')}
+      okText={t('Create Student')}
       cancelText={t('Cancel')}
       onOk={handleSubmit}
       centered
@@ -112,14 +105,22 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
         autoComplete="on"
         layout="vertical"
       >
-        <Form.Item label={t('Image')}>
-          <UploadComponent 
-            onChange={handleFileChange}
-            multiple={false}
-            uploadType="product"
-          />
+        <Form.Item label={t('Course')} required>
+          <Select 
+            value={membership} 
+            style={{ width: '100%' }} 
+            onChange={handleMembership}
+            showSearch
+            filterOption={(input, option) =>  option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+          >
+            {memberships.map(({ _id, title }) => (
+              <Option key={_id} value={_id}>
+                {title}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
-        <Form.Item label={t('Membership')} required>
+        <Form.Item label={t('Group')} required>
           <Select 
             value={membership} 
             style={{ width: '100%' }} 
@@ -145,71 +146,6 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
         </Form.Item>
         <Form.Item label={t('Address')}>
           <Input name="address" value={address} onChange={handleInputChange} />
-        </Form.Item>
-        {
-          selectedMembership?.duration && (
-            <>
-              <Form.Item label={t('Membership Start')}>
-                <DatePicker
-                  name="membershipStart"
-                  value={membershipStart}
-                  onChange={(e) => handleDateChange(e, 'membershipStart')}
-                  style={{ width: '100%' }}
-                  showToday
-                  allowClear={false}
-                />
-              </Form.Item>
-              <Form.Item label={t('Membership End')}>
-                <DatePicker
-                  name="membershipEnd"
-                  value={membershipEnd}
-                  onChange={(e) => handleDateChange(e, 'membershipEnd')}
-                  style={{ width: '100%' }}
-                  showToday
-                  allowClear={false}
-                />
-              </Form.Item>
-            </>
-          )
-        }
-        <Form.Item label={t('Trainer')}>
-          <Select
-            name="status"
-            style={{ width: '100%' }}
-            allowClear
-            onChange={(e) => setInputValues({...inputValues, trainer: e})}
-          >
-            <Option value={null}>{t("Coach is not needed")}</Option>
-            {trainersData?.map(item => (
-              <Option value={item?._id}>{item.firstName} {item.lastName}</Option>
-            ))}
-          </Select>
-        </Form.Item>
-        <Form.Item label={t('Status')}>
-          <Select
-            value={status}
-            name="status"
-            style={{ width: '100%' }}
-            onChange={handleStatusChange}
-          >
-            <Option value="active">{t('Active')}</Option>
-            <Option value="inactive">{t('In Active')}</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label={t('Language')}>
-          <Select 
-            value={lang} 
-            style={{ width: '100%' }} 
-            onChange={handleLangChange}
-          >
-            {Object.values(LANGUAGES).map((item) => {
-              return (
-                <Option key={item.value} value={item.value}>
-                  {t(item.label)}
-                </Option>
-              );
-            })}
-          </Select>
         </Form.Item>
       </Form>
     </Modal>

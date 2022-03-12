@@ -127,7 +127,7 @@ export default function PaymentsAdd({ isVisible, hideModal, fetchData }) {
         autoComplete="on"
         layout="vertical"
       >
-        <Form.Item label={t('Member')}>
+        <Form.Item label={t('Course')}>
           <Select
             value={member}
             name="member"

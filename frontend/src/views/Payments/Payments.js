@@ -384,7 +384,7 @@ function Payments() {
           type="card"
           onChange={(key) => setActiveTab(key)}
         >
-          <TabPane tab={t("Membership")} key="membership">
+          <TabPane tab={t("Course")} key="membership">
             <PageHeader
               btnLabel={t("Add Payment")}
               iconName="AiOutlineShop"

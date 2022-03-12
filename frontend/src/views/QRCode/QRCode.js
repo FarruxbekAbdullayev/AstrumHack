@@ -16,9 +16,11 @@ export default function QRCodeScanner() {
   const { speak, voices } = useSpeechSynthesis();
 
   const handleScan = async (value) => {
+    console.log(value, scanRef.current)
     if(value && scanRef.current) {
       scanRef.current = false;
       // audioRef.current.play();
+
 
       const {data, message} = await CREATE_ATTANDANCE_WITH_QRCODE(value);
       const voice = voices[63];
@@ -52,8 +54,8 @@ export default function QRCodeScanner() {
         });
       }
     
-      setScanRefToFalse()
     }
+    setScanRefToFalse()
   };
 
   const setScanRefToFalse = () => {

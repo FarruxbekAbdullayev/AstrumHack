@@ -4,7 +4,7 @@ import axios from '../utils/axios';
 
 export const CREATE_USER = async (mebership) => {
   try {
-    const { data } = await axios.post('/users', mebership);
+    const { data } = await axios.post('/users/add-user', mebership);
     return data;
   } catch (error) {
     console.log(error);
@@ -64,7 +64,7 @@ export const FETCH_USER_DETAILS = async (id) => {
 
 export const DELETE_USER = async (id) => {
   try {
-    const { data } = await axios.delete(`/users/${id}`);
+    const { data } = await axios.post(`/users/${id}/delete`);
     return data;
   } catch (error) {
     console.log(error);
@@ -74,7 +74,7 @@ export const DELETE_USER = async (id) => {
 
 export const UPDATE_USER = async (id, user) => {
   try {
-    const { data } = await axios.put(`/users/${id}`, user);
+    const { data } = await axios.post(`/users/${id}/edit`, user);
     return data;
   } catch (error) {
     console.log(error);

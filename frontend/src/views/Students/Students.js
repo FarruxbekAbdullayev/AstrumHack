@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { Table, message, Image, Input } from "antd";
 import PageHeader from "../../components/PageHeader";
-import { StyledEquipment } from "./Members.style";
+import { StyledEquipment } from "./Students.style";
 import { createTablePagination, t } from "../../utils";
 import Status from "../../components/Status";
 import {
@@ -31,13 +31,12 @@ const EditModal = lazy(() => import("../../components/Students/StudentEdit"));
 
 const QRCodeComponent = memo(QRCode);
 
-export default function Members() {
+export default function Students() {
   const [selectedMembership, setSelectedMembership] = useState(null);
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(true);
   const [edit, setEdit] = useState(false);
   const [data, setData] = useState([]);
-  const [trainersData, setTrainersData] = useState([]);
   const { isReceptionist } = useRole();
   const account = useSelector((state) => state.account);
   const [pagination, setPagination] = useState(
@@ -46,15 +45,11 @@ export default function Members() {
 
   const fetchData = async () => {
     setLoading(true);
-    const { data } = await FETCH_USER();
-    const { data: trainerData } = await FETCH_TRAINERS();
+    const data = await FETCH_USER();
 
     if (data) {
       setData(data);
       setLoading(false);
-    }
-    if (trainerData) {
-      setTrainersData(trainerData);
     }
   };
 
@@ -88,7 +83,7 @@ export default function Members() {
     setLoading(true);
     const { data } = await DELETE_USER(userId);
     if (data) {
-      message.success(t("User deleted successfully"));
+      message.success(t("Student deleted successfully"));
       fetchData();
     }
   }, []);
@@ -97,7 +92,7 @@ export default function Members() {
     const { value } = e.target;
     if (value) {
       const filteredData = data.filter((item) => {
-        const name = item.firstName.toLowerCase();
+        const name = item.name.toLowerCase();
         if (name.includes(value.toLowerCase())) {
           return item;
         } else {
@@ -138,44 +133,14 @@ export default function Members() {
     // },
     {
       title: t("First Name"),
-      dataIndex: "firstName",
+      dataIndex: "name",
       render: (text, record) => `${text} ${record.lastName}`,
-    },
-    {
-      title: t("Teacher"),
-      dataIndex: "trainer",
-      render: (text) =>
-        text
-          ? `${text?.firstName} ${text?.lastName}`
-          : t("The Teacher is not attached"),
-      filters: trainersData.map((item) => ({
-        text: `${item.lastName} ${item.firstName}`,
-        value: `${item.lastName} ${item.firstName}`,
-      })),
-      onFilter: (value, record) =>
-        `${record?.trainer?.lastName} ${record?.trainer?.firstName}` === value,
     },
     {
       title: t("Phone"),
       dataIndex: "phone",
     },
 
-    {
-      title: t("Status"),
-      dataIndex: "status",
-      render: (text) => <Status status={text}>{t(text)}</Status>,
-      filters: [
-        {
-          text: t("Active"),
-          value: "active",
-        },
-        {
-          text: t("Inactive"),
-          value: "inactive",
-        },
-      ],
-      onFilter: (value, record) => record.status === value,
-    },
     {
       title: t("QRCode"),
       dataIndex: "qrCode",
@@ -224,9 +189,9 @@ export default function Members() {
   return (
     <StyledEquipment>
       <PageHeader
-        btnLabel={t("Add Member")}
+        btnLabel={t("Add Student")}
         iconName="AiOutlineUsergroupAdd"
-        title="Member"
+        title="Student"
         data={data}
         onClick={handleShowModal}
         tableId="membersTable"
@@ -253,26 +218,6 @@ export default function Members() {
         pagination={{
           ...PAGINATION,
           onChange: (page, pageSize) => setPagination(pageSize),
-        }}
-        summary={(record) => {
-          return (
-            <>
-              <Table.Summary.Row className="fw-600">
-                <Table.Summary.Cell colSpan={4}>
-                  {t("Total price")}
-                </Table.Summary.Cell>
-                <Table.Summary.Cell colSpan={4}>
-                  {/* <Text> */}
-                  <p style={{ padding: 10, margin: 0 }}>
-                    {parseInt(
-                      record?.reduce((a, b) => a + b?.membership?.price, 0) ?? 0
-                    ).toLocaleString("ru")}
-                    {/* </Text> */}
-                  </p>
-                </Table.Summary.Cell>
-              </Table.Summary.Row>
-            </>
-          );
         }}
       />
 

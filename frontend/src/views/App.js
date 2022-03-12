@@ -9,9 +9,9 @@ import Sidebar from '../components/Sidebar/Sidebar';
 
 const { Content } = Layout;
 function App() {
-  const { token } = useSelector((state) => state.account);
+  const { _id } = useSelector((state) => state.account);
 
-  if (!token) {
+  if (!_id) {
     return (
       <Suspense fallback="Loading...">
         <Routes>

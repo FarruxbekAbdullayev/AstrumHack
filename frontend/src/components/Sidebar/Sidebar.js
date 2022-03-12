@@ -16,7 +16,7 @@ const { Sider } = Layout;
 
 export default function Sidebar() {
   const dispatch = useDispatch();
-  const { firstName, role, lastName, image } = useSelector((state) => state.account);
+  const { name, role, lastName, image } = useSelector((state) => state.account);
   const location = useLocation();
   const handleLogOut = async () => {
     Swal.fire({
@@ -42,12 +42,12 @@ export default function Sidebar() {
           <div className="profile-image mb-2">
             <img src={image?.url || defaultUser} alt="Profile" />
           </div>
-          <h4>{`${firstName || ''} ${lastName || ''}`}</h4>
+          <h4>{`${name || ''} ${lastName || ''}`}</h4>
           <div>{t(role)}</div>
         </Link>
         <Divider style={{ margin: '3px 5px' }} />
         <Menu mode="inline" id="sidebar-menu" selectedKeys={[location.pathname]}>
-          {MAIN_ROUTES.filter(i => !i.hidden && i.allowedRoles.includes(role)).map((item) => {
+          {MAIN_ROUTES.map((item) => {
             const { icon, path, title } = item;
             return (
               <Menu.Item key={path} className="sidebar-item" icon={icon}>

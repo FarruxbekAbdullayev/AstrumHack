@@ -12,7 +12,7 @@ export default function SignUp() {
   const [inputValues, setInputValues] = useState({
     password: null,
     phone: '',
-    firstName: '',
+    name: '',
     lastName: '',
     address: '',
     email: '',
@@ -21,9 +21,9 @@ export default function SignUp() {
 
   const handleSubmit = async () => {
     const userData = await SIGN_UP(inputValues);
+    console.log(userData);
     if(userData) {
-      const { token, data } = userData;
-      dispatch(updateAccount({token, ...data}));
+      dispatch(updateAccount({token: null, ...userData?.payload}));
     }
   };
 
@@ -65,8 +65,8 @@ export default function SignUp() {
         >
           <Input
             size="large"
-            name="firstName"
-            value={inputValues.firstName}
+            name="name"
+            value={inputValues.name}
             onChange={handleInputChange}
           />
         </Form.Item>

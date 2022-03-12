@@ -76,7 +76,7 @@ export const AUTH_ROUTES = [
     element: SignIn
   },
   {
-    path: '/secret',
+    path: '/sign-up',
     element: SignUp
   },
   {

@@ -4,7 +4,7 @@ import { getErrorMessage } from '../utils';
 
 export const SIGN_UP = async attendance => {
   try {
-    const { data } = await axios.post('/signup', attendance);
+    const { data } = await axios.post('/auth/sign-up', attendance);
     return data;
   } catch (error) {
     console.log(error);
@@ -14,7 +14,7 @@ export const SIGN_UP = async attendance => {
 
 export const SIGN_IN = async user => {
   try {
-    const { data } = await axios.post('/login', user);
+    const { data } = await axios.post('/auth/sign-in', user);
     return data;
   } catch (error) {
     console.log(error);

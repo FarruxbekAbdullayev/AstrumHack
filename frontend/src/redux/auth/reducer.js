@@ -8,6 +8,7 @@ const initialState = {
   email: '',
   phone: '',
   address: '',
+  _id: null
 };
 
 export const profileSlice = createSlice({

@@ -9,25 +9,27 @@ import Sidebar from '../components/Sidebar/Sidebar';
 
 const { Content } = Layout;
 function App() {
-  const { _id } = useSelector((state) => state.account);
+  // const { _id } = useSelector((state) => state.account);
 
-  if (!_id) {
-    return (
-      <Suspense fallback="Loading...">
-        <Routes>
-          {AUTH_ROUTES.map((item) => {
-            const { path, element: Component } = item;
-            return <Route key={path} path={path} element={<Component />} />;
-          })}
-        </Routes>
-      </Suspense>
-    );
-  }
+  // if (!_id) {
+  //   return (
+  //     <Suspense fallback="Loading...">
+  //       <Routes>
+  //         {AUTH_ROUTES.map((item) => {
+  //           const { path, element: Component } = item;
+  //           return <Route key={path} path={path} element={<Component />} />;
+  //         })}
+  //       </Routes>
+  //     </Suspense>
+  //   );
+  // }
   
   return (
     <StyledApp>
       <Layout>
-        <Sidebar />
+        {
+          window.location.pathname != '/qrcheck' ?  <Sidebar /> : null
+        }
         <Layout id="main">
           <Content style={{ margin: '24px 16px 0' }}>
             <div
@@ -40,7 +42,7 @@ function App() {
                     const { path, element: Component } = item;
                     return <Route key={path} path={path} element={<Component />} />;
                   })}
-                  <Route path="*" element={<Navigate to="/students" />} />
+                  <Route path="*" element={<Navigate to="/qrcheck" />} />
                 </Routes>
               </Suspense>
             </div>

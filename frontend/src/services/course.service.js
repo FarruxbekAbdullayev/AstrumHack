@@ -8,7 +8,7 @@ export const CREATE__COURSE = async course => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -18,7 +18,7 @@ export const FETCH_COURSES = async course => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -28,7 +28,7 @@ export const DELETE_COURSE = async (id) => {
       return data;
     } catch (error) {
       console.log(error);
-      message.error(getErrorMessage(error));
+      // message.error(getErrorMessage(error));
     }
   };
   
@@ -38,7 +38,7 @@ export const DELETE_COURSE = async (id) => {
       return data;
     } catch (error) {
       console.log(error);
-      message.error(getErrorMessage(error));
+      // message.error(getErrorMessage(error));
     }
   };
   

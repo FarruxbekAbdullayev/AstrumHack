@@ -8,7 +8,7 @@ export const CREATE_MEMBERSHIP = async (mebership) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -18,7 +18,7 @@ export const FETCH_MEMBERSHIP = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 export const DELETE_MEMBERSHIP = async (id) => {
@@ -27,7 +27,7 @@ export const DELETE_MEMBERSHIP = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 export const UPDATE_MEMBERSHIP = async (id, membership) => {
@@ -36,6 +36,6 @@ export const UPDATE_MEMBERSHIP = async (id, membership) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };

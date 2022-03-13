@@ -75,7 +75,7 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
     }
   };
 
-  const { address, membership, firstName, phone, lang, status, lastName, membershipStart, membershipEnd } =
+  const { address, membership, name, phone, lastName, email, password } =
     inputValues;
 
   const selectedMembership = useMemo(() => memberships.find((item) => item._id === membership), [ memberships, membership ]);
@@ -105,7 +105,7 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
         autoComplete="on"
         layout="vertical"
       >
-        <Form.Item label={t('Course')} required>
+        {/* <Form.Item label={t('Course')} required>
           <Select 
             value={membership} 
             style={{ width: '100%' }} 
@@ -134,9 +134,9 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
               </Option>
             ))}
           </Select>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label={t('First Name')}>
-          <Input name="firstName" value={firstName} onChange={handleInputChange} />
+          <Input name="name" value={name} onChange={handleInputChange} />
         </Form.Item>
         <Form.Item label={t('Last Name')}>
           <Input name="lastName" value={lastName} onChange={handleInputChange} />
@@ -144,8 +144,14 @@ export default function MemberAdd({ isVisible, hideModal, fetchData }) {
         <Form.Item label={t('Phone')} required>
           <Input name="phone" value={phone} onChange={handleInputChange} />
         </Form.Item>
+        <Form.Item label={t('Email')} required>
+          <Input name="email" value={email} onChange={handleInputChange} />
+        </Form.Item>
         <Form.Item label={t('Address')}>
           <Input name="address" value={address} onChange={handleInputChange} />
+        </Form.Item>
+        <Form.Item label={t('Password')} required>
+          <Input.Password name="password" value={password} onChange={handleInputChange} />
         </Form.Item>
       </Form>
     </Modal>

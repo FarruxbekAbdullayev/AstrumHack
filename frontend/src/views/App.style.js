@@ -21,7 +21,7 @@ export const StyledApp = styled.main `
   }
   #main {
     background-color: #fff;
-    padding-left: ${pxToRem(STYLING_CONFIGS.SIDEBAR_WIDTH)};
+    padding-left: ${window.location.pathname == '/qrcheck' ? null : pxToRem(STYLING_CONFIGS.SIDEBAR_WIDTH)};
   }
   .profile {
     text-align: center;

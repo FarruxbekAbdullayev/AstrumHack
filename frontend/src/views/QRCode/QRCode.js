@@ -3,6 +3,8 @@ import { useRef } from 'react';
 import QrReader from 'react-qr-reader';
 import { CREATE_ATTANDANCE_WITH_QRCODE } from '../../services/attendance.service';
 import successAudio from './scanned.mp3';
+import Logo from '../../assets/images/sidebar/logo.jpg'
+import QRcheck from '../../assets/images/qrcheck (1).svg';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { Button } from 'antd';
@@ -71,18 +73,12 @@ export default function QRCodeScanner() {
   }
 
   return (
-    <div style={{textAlign: 'center'}}>
-      <audio src={successAudio} hidden ref={audioRef}></audio>
-      <QrReader
-        delay={500}
-        onError={handleError}
-        onScan={handleScan}
-        style={{ width: '100%', maxWidth: 300, margin: '20px auto 30px' }}
-        facingMode={frontCamera ? 'user' : 'environment'}
-      />
-      <Button type='primary' onClick={() => setFrontCamera(!frontCamera)}> 
-        {t('Change Camera')}
-      </Button>
+    <div style={{textAlign: 'center', height: '92vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
+      <div style={{background: '#5f23d9', display: 'inline-block', padding: '25px', borderRadius: '33px'}} className="qr-inner">
+        <img style={{borderRadius: '8px'}} width={150} src={QRcheck} alt="qrcode"/>
+      </div>
+      <h1 style={{fontSize: '28px', marginTop: '10px'}}>Kompyuterdan foydalanish uchun QRni scanerlang</h1>
+      <img width={200} src={Logo} alt="logo"/>
     </div>
   )
 } 

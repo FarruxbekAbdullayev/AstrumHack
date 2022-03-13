@@ -8,7 +8,7 @@ export const CREATE_USER = async (mebership) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -18,7 +18,7 @@ export const FETCH_USER = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -28,7 +28,7 @@ export const FETCH_STUFF = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -38,7 +38,7 @@ export const FETCH_ADMINS = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -48,7 +48,7 @@ export const FETCH_TRAINERS = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -58,7 +58,7 @@ export const FETCH_USER_DETAILS = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -68,7 +68,7 @@ export const DELETE_USER = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -78,6 +78,6 @@ export const UPDATE_USER = async (id, user) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };

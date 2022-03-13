@@ -2,7 +2,7 @@ import Axios from 'axios';
 import store from '../redux';
 import { clearAccount } from '../redux/auth/reducer';
 
-const baseURL = process.env.NODE_ENV === 'development'?'http://localhost:9999':'https://api.sparta-fitness.uz';
+const baseURL = process.env.NODE_ENV === 'development'?'http://localhost:9999':'https://30f5-84-54-83-231.ngrok.io';
 const axios = Axios.create({ baseURL, withCredentials: true });
 
 axios.interceptors.request.use((configs) => {

@@ -62,5 +62,6 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "proxy": "https://30f5-84-54-83-231.ngrok.io"
 }

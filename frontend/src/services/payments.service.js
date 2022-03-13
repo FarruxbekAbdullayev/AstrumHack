@@ -9,7 +9,7 @@ export const CREATE_PAYMENT = async (payment) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -20,7 +20,7 @@ export const FETCH_STATISTICS = async (filter) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -30,7 +30,7 @@ export const FETCH_PAYMENTS = async (filter) => {
     const { data } = await axios.get(`/payments/?${filters}`);
     return data;
   } catch (error) {
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -40,7 +40,7 @@ export const DELETE_PAYMENT = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -50,6 +50,6 @@ export const UPDATE_PAYMENT = async (id, products) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };

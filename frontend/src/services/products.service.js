@@ -9,7 +9,7 @@ export const CREATE_PRODUCT = async (mebership) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -21,7 +21,7 @@ export const FETCH_PRODUCTS = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 export const DELETE_PRODUCT = async (id) => {
@@ -30,7 +30,7 @@ export const DELETE_PRODUCT = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 export const UPDATE_PRODUCT = async (id, products) => {
@@ -39,6 +39,6 @@ export const UPDATE_PRODUCT = async (id, products) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };

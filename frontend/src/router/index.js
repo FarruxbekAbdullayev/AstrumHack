@@ -55,10 +55,10 @@ export const MAIN_ROUTES = [
   },
   {
     allowedRoles: ['admin', 'reception'],
-    path: '/qrcode-scanner',
+    path: '/qrcheck',
     element: QRCode,
     icon: <BiScan size={24} />,
-    title: 'QRCode Scanner',
+    title: 'QRCode Check',
     hidden: false
   },
   {
@@ -81,8 +81,8 @@ export const MAIN_ROUTES = [
 
 export const AUTH_ROUTES = [
   {
-    path: '/sign-in',
-    element: SignIn
+    path: '/qrcheck',
+    element: QRCode
   },
   {
     path: '/sign-up',

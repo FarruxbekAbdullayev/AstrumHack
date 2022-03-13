@@ -9,7 +9,7 @@ export const CREATE_EXPENCE = async (expence) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -21,7 +21,7 @@ export const FETCH_EXPENCES = async (filter) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -31,7 +31,7 @@ export const DELETE_EXPENCE = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -41,6 +41,6 @@ export const UPDATE_EXPENCE = async (id, expences) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };

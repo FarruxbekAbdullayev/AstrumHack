@@ -8,7 +8,7 @@ export const CREATE_ATTANDANCE = async (attendance) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -18,17 +18,17 @@ export const CREATE_ATTANDANCE_WITH_QRCODE = async (userId) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
 export const FETCH_ATTANDANCE = async () => {
   try {
-    const { data } = await axios.get('/attendance/');
+    const { data } = await axios.get('/attendance');
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -38,7 +38,7 @@ export const DELETE_ATTANDANCE = async (id) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };
 
@@ -48,6 +48,6 @@ export const UPDATE_ATTANDANCE = async (id, userData) => {
     return data;
   } catch (error) {
     console.log(error);
-    message.error(getErrorMessage(error));
+    // message.error(getErrorMessage(error));
   }
 };

@@ -19,7 +19,7 @@ export default function QRCodeScanner() {
     console.log(value, scanRef.current)
     if(value && scanRef.current) {
       scanRef.current = false;
-      // audioRef.current.play();
+      audioRef.current.play();
 
 
       const {data, message} = await CREATE_ATTANDANCE_WITH_QRCODE(value);

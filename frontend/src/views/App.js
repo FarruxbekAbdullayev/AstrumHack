@@ -40,7 +40,7 @@ function App() {
                     const { path, element: Component } = item;
                     return <Route key={path} path={path} element={<Component />} />;
                   })}
-                  <Route path="*" element={<Navigate to="/members" />} />
+                  <Route path="*" element={<Navigate to="/students" />} />
                 </Routes>
               </Suspense>
             </div>

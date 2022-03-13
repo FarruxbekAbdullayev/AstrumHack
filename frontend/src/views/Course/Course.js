@@ -20,6 +20,8 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { useSelector } from "react-redux";
 
+const AddModal = lazy(() => import("../../components/Course/CourseAdd"));
+
 export default function Course() {
   const [data, setData] = useState([{
     name: 'Hello',
@@ -27,6 +29,7 @@ export default function Course() {
     teachers: 2,
     duration: 2,
   }]);
+  const [show, setShow] = useState(false);
 
   // const fetchData = async () => {
   //   setLoading(true);
@@ -62,6 +65,15 @@ export default function Course() {
   //   () => createTablePagination(data.length, pagination),
   //   [pagination, data]
   // );
+
+  
+  const handleShowModal = useCallback(() => {
+    setShow(true);
+  }, []);
+
+  const handleHideModal = useCallback(() => {
+    setShow(false);
+  }, []);
 
   let columns = [
     {
@@ -124,8 +136,8 @@ export default function Course() {
         btnLabel={t("Add Course")}
         iconName="AiOutlineUsergroupAdd"
         title="Courses"
-        // data={data}
-        // onClick={handleShowModal}
+        data={data}
+        onClick={handleShowModal}
         tableId="coursesTable"
         tableTime={new Date()}
       />
@@ -147,5 +159,24 @@ export default function Course() {
         //   onChange: (page, pageSize) => setPagination(pageSize),
         // }}
       />
+            {show ? (
+        <Suspense fallback="Loading...">
+          <AddModal
+            isVisible={show}
+            hideModal={handleHideModal}
+            // fetchData={fetchData}
+          />
+        </Suspense>
+      ) : null}
+      {/* {edit ? (
+        <Suspense fallback="Loading...">
+          <EditModal
+            isVisible={edit}
+            hideModal={handleHideEditModal}
+            fetchData={fetchData}
+            data={{ ...selectedMembership }}
+          />
+        </Suspense>
+      ) : null} */}
   </StyledCourse>
 }
